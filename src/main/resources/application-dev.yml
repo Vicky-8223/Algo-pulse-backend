@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+
+  application:
+    name: prepos
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/prepos_db
+    username: prepos_user
+    password: prepos_password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+jwt:
+  secret: mysupersecretkeymysupersecretkey123456
+  expiration: 86400000
