@@ -1,0 +1,21 @@
+package com.prepos.analytics;
+
+
+public enum CoreTopic {
+    ARRAY,
+    STRING,
+    HASHING,
+    LINKED_LIST,
+    STACK_QUEUE,
+    BINARY_SEARCH,
+    SLIDING_WINDOW,
+    TREE,
+    HEAP,
+    GRAPH,
+    RECURSION_BACKTRACKING,
+    DYNAMIC_PROGRAMMING,
+    GREEDY,
+    BIT_MANIPULATION,
+    TRIE,
+    ADVANCED_DATA_STRUCTURES
+}
