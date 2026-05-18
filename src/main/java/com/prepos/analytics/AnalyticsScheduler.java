@@ -16,7 +16,7 @@ public class AnalyticsScheduler {
     private final UserRepository userRepository;
     private final AnalyticsService analyticsService;
 
-    @Scheduled(fixedRate=86400)
+    @Scheduled(fixedRate = 86400000)
     public void runAnalyticsScheduler(){
         log.info("Starting analytics scheduler");
         List<User> users=userRepository.findAll();
@@ -25,9 +25,15 @@ public class AnalyticsScheduler {
                 String leetcodeUsername=user.getLeetcodeUserName();
                 if(leetcodeUsername==null||leetcodeUsername.isBlank())continue;
                 analyticsService.syncUserAnalytics(user,leetcodeUsername);
+                analyticsService.syncSolvedProblems(user);
+                analyticsService.enrichSolvedProblems(user);
+                analyticsService.generateFeatureSnapshot(user);
+                analyticsService.generateWeaknessScore(user);
+
                 log.info("Synced analytics for {}",user.getEmail());
             }
             catch(Exception e){
+                log.info(e.getMessage());
                 log.error("Failed syncing user {}",user.getEmail());
             }
         }

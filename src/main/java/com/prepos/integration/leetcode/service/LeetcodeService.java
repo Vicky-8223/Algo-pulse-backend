@@ -1,6 +1,7 @@
 package com.prepos.integration.leetcode.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prepos.analytics.dto.CalendarDTO;
 import com.prepos.integration.leetcode.client.LeetcodeClient;
 import com.prepos.integration.leetcode.dto.LeetcodeProfileDTO;
 import com.prepos.integration.leetcode.dto.SkillResponseDTO;

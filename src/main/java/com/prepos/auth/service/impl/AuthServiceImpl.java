@@ -29,7 +29,8 @@ public class AuthServiceImpl implements AuthService {
                 .email(register.getEmail())
                 .password(passwordEncoder.encode(register.getPassword())).build();
         userRepo.save(user);
-        return new AuthResponseDTO(null,"User registered successfully");
+        String token=jwtService.generateToken(user.getEmail());
+        return new AuthResponseDTO(token,"User registered successfully");
     }
 
     @Override

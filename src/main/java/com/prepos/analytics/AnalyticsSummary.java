@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -15,5 +17,6 @@ public class AnalyticsSummary {
       private Integer acceptanceRate;
       private Integer strongTopics;
       private Integer weakTopics;
-
+      private List<String>strongTopicsList;
+      private List<String>weakTopicsList;
 }
