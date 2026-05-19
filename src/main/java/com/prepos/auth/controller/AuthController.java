@@ -39,11 +39,16 @@ public class AuthController {
         return new ApiResponse<>(true,"Login successful",response);
     }
     @PutMapping("/leetcode")
-    public ApiResponse<String> updateLeetcodeUsername(@RequestBody UpdateLeetcodeDTO request, Authentication authentication){
+    public ApiResponse<String> updateLeetcodeUsername(@RequestBody UpdateLeetcodeDTO request, Authentication authentication)throws Exception{
         String email=authentication.getName();
         User user=userRepository.findByEmail(email).orElseThrow(()->new RuntimeException("User not found"));
         user.setLeetcodeUserName(request.getLeetCodeUsername());
         userRepository.save(user);
+        analyticsService.syncUserAnalytics(user,request.getLeetCodeUsername());
+        analyticsService.syncSolvedProblems(user);
+        analyticsService.enrichSolvedProblems(user);
+        analyticsService.generateFeatureSnapshot(user);
+        analyticsService.generateWeaknessScore(user);
         return new ApiResponse<>(true,"LeetCode username updated",user.getLeetcodeUserName());
     }
     @GetMapping("/me")
