@@ -283,10 +283,6 @@ public class AnalyticsService {
                 .mediumPercentage(mediumPercentage)
                 .hardPercentage(hardPercentage).build();
     }
-    @Cacheable(
-            value="solvedProblems",
-            key="#user.id"
-    )
     @Transactional
     public void syncSolvedProblems(User user){
         String username=user.getLeetcodeUserName();
@@ -377,10 +373,6 @@ public class AnalyticsService {
                         .build();
         snapshotRepository.save(snapshot);
     }
-    @Cacheable(
-            value="weaknessScore",
-            key="#user.id"
-    )
     @Transactional
     public void generateWeaknessScore(User user){
         List<UserTopicProgress>topics=repo.findByUser(user);
@@ -392,9 +384,18 @@ public class AnalyticsService {
 
             weakness+=topic.getDecayCounter()*2;
             switch(topic.getStrengthLevel()){
-                case WEAK:weakness+=35;
-                case MEDIUM:weakness+=15;
-                case STRONG:weakness+=0;
+                case WEAK: {
+                    weakness += 35;
+                    break;
+                }
+                case MEDIUM: {
+                    weakness += 15;
+                    break;
+                }
+                case STRONG: {
+                    weakness += 0;
+                    break;
+                }
             }
             weakness=Math.min(100,weakness);
             double confidence=Math.min(100,topic.getSolvedCount()*2);
@@ -449,6 +450,7 @@ public class AnalyticsService {
 
     }
     public List<WeaknessDTO> getWeaknessAnalytics(User user){
+        generateWeaknessScore(user);
         return weaknessRepository.findAll().stream()
                 .filter(w->w.getUser().getId().equals(user.getId()))
                 .map(w->WeaknessDTO.builder()
