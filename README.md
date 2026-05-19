@@ -1,6 +1,6 @@
 # Algo-Pulse — LeetCode Analytics & Preparation Platform
 
-> A full-stack platform that connects to your LeetCode profile, analyses your solving patterns, identifies weak topics, and serves personalised problem recommendations to accelerate your interview preparation.
+> A full-stack platform that connects to your LeetCode profile, analyses your solving patterns, identifies weak topics, and serves personalised problem recommendations.
 
 ---
 
@@ -125,7 +125,7 @@ src/main/java/com/algopulse/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Vicky-8223/Prepos.git
+git clone https://github.com/Vicky-8223/Algo-pulse-backend.git
 cd Prepos
 ```
 
