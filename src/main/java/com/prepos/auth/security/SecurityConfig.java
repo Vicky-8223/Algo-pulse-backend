@@ -66,6 +66,7 @@ public class SecurityConfig {
                         "http://172.16.0.2:3000",
                         "http://172.23.48.1:3000",
                         "http://10.87.41.106:3000",
+                        "https://algo-pulse-frontend.vercel.app",
                         "https://algo-pulse-frontend-hn75b5el2-velvignesh2405-9978s-projects.vercel.app"
                 )
         );
