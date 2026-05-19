@@ -26,6 +26,6 @@ public class User{
     @Column(nullable = false)
     private String password;
 
-    @Column(unique=false,nullable = false)
+    @Column(unique=false)
     private String leetcodeUserName;
 }
