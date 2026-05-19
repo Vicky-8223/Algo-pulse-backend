@@ -1,6 +1,7 @@
 package com.prepos.auth.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 @Entity
@@ -18,12 +19,13 @@ public class User{
     @Column(nullable = false, unique = true)
     private String username;
 
+
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(unique = true)
+    @Column(unique=false,nullable = false)
     private String leetcodeUserName;
 }
